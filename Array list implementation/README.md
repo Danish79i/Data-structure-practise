@@ -83,34 +83,3 @@ Concepts: Classes, Dynamic Arrays (new/delete), Pointers, Menu-driven program
 ArrayList/
 │── main.cpp       # Source code (contains Array_list class and menu)
 │── README.md      # Project documentation
-
-🚀 How to Run
-
-Clone the repository:
-
-git clone https://github.com/your-username/ArrayList.git
-
-
-Navigate into the project folder:
-
-cd ArrayList
-
-
-Compile the program:
-
-g++ main.cpp -o arraylist
-
-
-Run the program:
-
-./arraylist
-
-📌 Future Improvements
-
-Dynamic resizing (like std::vector).
-
-Better error handling for invalid inputs.
-
-Support for duplicate element removal.
-
-Adding sorting functions.
