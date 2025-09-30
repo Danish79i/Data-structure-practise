@@ -1,0 +1,169 @@
+#include <iostream>
+using namespace std;
+
+class Array_list
+{
+	private:
+		int *arry;
+		int length;
+		int *curr;
+		int capacity;
+		
+	public:
+		Array_list(int s){
+			arry= new int [s];
+			capacity = s;
+			length =0;
+			curr=NULL;
+		}
+		
+	void insert(int val, int pos) 
+{
+    if (length == capacity) 
+    {
+        cout << "Capacity full!" << endl;
+        return;
+    }
+
+    if (pos < 1 || pos > (length + 1))
+    {
+        cout << "Invalid position!" << endl;
+        return;
+    }
+
+    // Shift elements to the right
+    for (int i = length; i >= pos; i--)
+    {
+        arry[i] = arry[i - 1];
+    }
+
+    // Insert new element
+    arry[pos - 1] = val;
+    length++;
+}
+
+    
+	void display() 
+		{
+        if (length == 0) {
+            cout << "List is empty" << endl;
+            return;
+        }
+        cout << "Elements in the list: ";
+        for (int i = 0; i < length; i++)
+		{
+            cout << arry[i] << " ";
+        }
+        cout << endl;
+    }	
+	void removePos(int pos)
+	{
+		if (length == 0)
+		{
+			cout<<"The list is Empty :";
+			return;
+		}
+		if (pos < 1 || pos > length)
+		{
+			cout<<"Invalid postion :";
+			return;
+		}
+		
+		curr = arry + pos-1;
+		
+		for (int i = pos -1; i < length -1; i++)
+		{
+			arry[i] = arry[i + 1];
+		}
+		
+		length--;
+	}
+	
+	void clear()
+	{
+		length = 0;
+	}
+	
+	
+	int find(int val) 
+	{
+        for (int i = 0; i < length; i++) {
+            if (arry[i] == val)
+                return i + 1;
+        }
+        return 0;
+    }
+	
+	void removeVal(int val)
+	{
+		int pos = find (val);
+		if (pos != 0)
+		{
+			removePos(pos);
+		}
+		else 
+		{
+			cout<<"Value not found :";
+		}
+	}
+	
+	
+	void start()
+	{
+		curr=arry;
+	}	
+	
+	void next()
+	{
+		curr++;
+	}
+	
+	void back()
+	{
+		curr--;
+	}
+	void end()
+	{
+		curr = arry + length - 1;
+	}
+	
+	~Array_list()
+	{
+		delete []arry;
+	}
+};
+
+
+int main() {
+	
+    Array_list list(5);  
+
+    cout << "Inserting elements..." << endl;
+    list.insert(10, 1);   
+    list.insert(20, 2);   
+    list.insert(15, 2);   
+    list.display();       
+
+    cout << "\nRemoving value 15..." << endl;
+    list.removeVal(15);   
+    list.display();       
+
+    cout << "\nRemoving element at position 1..." << endl;
+    list.removePos(1);    
+    list.display();       
+
+    cout << "\nClearing list..." << endl;
+    list.clear();         
+    list.display();       
+    
+	return 0;
+}
+
+
+
+
+
+
+
+
+
